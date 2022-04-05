@@ -5,10 +5,10 @@ import socket
 s = socket.socket()        
  
 # Define the port on which you want to connect
-port = 8080               
+port = 7173              
  
 # connect to the server on local computer
-s.connect(('127.0.0.1', port))
+s.connect(('35.198.16.4', port))
 s.send('patati e patata'.encode())
  
 # receive data from the server and decoding to get the string.

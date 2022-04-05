@@ -4,7 +4,7 @@ import socket
 s = socket.socket()        
  
 # reserve a port
-port = 8080               
+port = 7173         
  
 # bind to the port
 s.bind(('', port))        
