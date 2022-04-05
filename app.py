@@ -5,7 +5,15 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    name = request.args.get("name", "World")
-    return f'Hello, {escape(name)}!'
+    name = request.args.get("name", "Page")
+    return f'<h1>Home, {escape(name)}!</h1>'
+
+@app.route('/about')
+def about():
+    # name = request.args.get("name", "Page")
+    return f'<h1>About Page!</h1>'
+
+if __name__ == '__main__':
+    app.run(debug=True)
 """ flask run
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit) """
