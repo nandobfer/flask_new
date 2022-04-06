@@ -35,6 +35,7 @@ def data_handler():
       test = 'Test success'
     else:
       test = 'Couldnt get name'
+      return f'{test}'
     # returns a json to client
     # return json.dumps({'name': name, 'test': test})
     # returns a string
