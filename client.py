@@ -1,6 +1,6 @@
 from urllib.request import urlopen
 
-handler_url = 'http://localhost:7171/testing_comms/'
+handler_url = 'http://35.198.16.4:7171/testing_comms/'
 
 class Client():
     def __init__(self, name):

@@ -33,6 +33,7 @@ def data_handler():
     name = request.args.get('name')
     if name:
       test = 'Test success'
+      print(f'Got connection from a client, which sent this data as name: {name}')
     else:
       test = 'Couldnt get name'
       return f'{test}'
