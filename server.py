@@ -1,34 +1,47 @@
-import socket            
- 
-# next create a socket object
-s = socket.socket()        
- 
-# reserve a port
-port = 7173         
- 
-# bind to the port
-s.bind(('', port))        
-print(f'socket binded to {port}')
- 
-# put the socket into listening mode, number of max connections while server is busy 
-s.listen(5)    
-print("socket is listening")           
- 
-# a forever loop
-while True:
- 
-# Establish connection with client.
-  c, addr = s.accept()    
-  print('Got connection from', addr )
- 
-  # send data to the client. encoding to send byte type.
-  c.send('galinha pintadinha'.encode())
-  
-  # print data received from client, decoded as string
-  print(c.recv(1024).decode())
- 
-  # Close the connection with the client
-  c.close()
-   
-  # Breaking once connection closed
-#   break
+from flask import Flask, escape, request, url_for, redirect, json
+
+app = Flask(__name__)
+
+# url
+@app.route('/')
+def index():
+    # redirecting to another endpoint
+    return redirect(url_for('home'))
+
+# home page
+@app.route('/home')
+def home():
+      
+    return f'<h1>Home Page!</h1>'
+
+# url/argument=name
+@app.route('/<name>')
+def hello(name):
+    # print on page "Hello, argument passed on URL!"
+    return f'<h1>Hello, {escape(name)}!</h1>'
+
+# console printing
+with app.test_request_context():
+    print(url_for('home'))
+    # url_for('functionName', functionArgs = 'args')
+    print(url_for('hello', name='Fernando'))
+
+# connection testing
+@app.route('/testing_comms/', methods=['GET', 'POST'])
+def data_handler():
+    # requests name from client
+    name = request.args.get('name')
+    if name:
+      test = 'Test success'
+    else:
+      test = 'Couldnt get name'
+    # returns a json to client
+    # return json.dumps({'name': name, 'test': test})
+    # returns a string
+    return f'{test}. Salve {name}'
+
+if __name__ == '__main__':
+    app.run(debug=True, host="0.0.0.0", port="7171")
+
+""" flask run
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit) """
