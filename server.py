@@ -36,7 +36,7 @@ def data_handler():
       print(f'Got connection from a client, which sent this data as name: {name}')
     else:
       test = 'Couldnt get name'
-      return f'{test}'
+      return test
     # returns a json to client
     # return json.dumps({'name': name, 'test': test})
     # returns a string
